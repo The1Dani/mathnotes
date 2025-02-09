@@ -116,7 +116,7 @@ $$
 Next integer $2^{24} + 1$ cannot be stored exactly since its mantissa will contain 24 + 1 binary digits:
 
 $$
-2^{24} + 1 = (1.00\underbrace{00\dots01}_{23 \text{ zeros}})_2 \cdot 2^{24}
+2^{24} + 1 = (1.\underbrace{00\dots0}_{23 \text{ zeros}}1)_2 \cdot 2^{24}
 $$
 
 For IEEE SP integer $M = 2^{24} = 16777216$ and for IEEE DP integer is $M = 2^{53} \approx 9.0 \cdot 10^{15}$ . 
