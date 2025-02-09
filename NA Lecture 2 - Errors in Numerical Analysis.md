@@ -138,4 +138,69 @@ In the case of IEEE double precision the machine epsilon is:
 $$
 \varepsilon = 2^{-52}\approx2.22\cdot10^{-16}
 $$
+
 ### Sect. 1.4 Chopping and rounding
+
+Let us first consider these concepts with decimal arithmetic. We write a computer floating point number $x$ and if precision $t = n$ (number of digits) we must shorten it to fit within the computer. This is done by either **chopping** or **rounding**.
+
+The floating point **chopped**:
+
+$$
+fl(x) = \sigma\cdot\bar{x}\cdot10^e\equiv\sigma\cdot(a_1.a_2\dots a_n)_{10}\cdot10^e
+$$
+
+The floating point **rounded**:
+
+$$
+fl(x) = \begin{cases}
+\sigma\cdot(a_1.a_2\dots a_n)_{10}\cdot10^e, & \mbox{if} & a_{n+1} < 5 \\
+\sigma\cdot(a_1.a_2\dots a_n)_{10}\cdot10^e + (0.00\dots01)_{10}, & \mbox{if} & a_{n+1} \geq 5
+\end{cases}
+$$
+
+Now lets consider them in binary floating point representations:
+
+The floating point **chopped**:
+
+$$
+fl(x) = \sigma\cdot\bar{x}\cdot2^e\equiv\sigma\cdot(a_1.a_2\dots a_n)_{2}\cdot2^e
+$$
+
+The floating point **rounded**:
+
+$$
+fl(x) = \begin{cases}
+\sigma\cdot(a_1.a_2\dots a_n)_{2}\cdot2^e, & \mbox{if} & a_{n+1} = 0 \\
+\sigma\cdot(a_1.a_2\dots a_n)_{2}\cdot2^e + (0.00\dots01)_{2}, & \mbox{if} & a_{n+1} = 1
+\end{cases}
+$$
+
+The error $x - fl(x) = 0$ when $x$ is stored exactly the same.
+
+Consider the case $x > 0$ ($\sigma = +1$). With $x \neq fl(x)$, and using chopping calculations, we have always $fl(x) < x$ and therefore the error is always positive.
+
+With $x \neq fl(x)$ and rounding being used the error is for half of the values is negative and for the other half is positive this is in our advantage because when we make several calculations the cutting method is always accumulating error where in rounding this error sometimes gets canceled by the opposite $\sigma$ value.
+
+If we define $\Large\epsilon$ to be the negative of **relative error**:
+
+$$
+\epsilon = \frac{x - fl(x)}{x}
+$$
+
+This can be expanded to obtain 
+
+$$
+fl(x) = (1+\epsilon)x
+$$
+
+For bounds on relative error $\Large\epsilon$ :
+
+$$
+\large
+\begin{array}
+-\frac{1}{2^n} \leq \epsilon \leq \frac{1}{2n} & \mbox{if rounding is used}\\
+-\frac{1}{2^{n-1}} \leq \epsilon \leq 0 & \mbox{if chopping is used}
+\end{array}
+$$
+
+Observe that **chopping** introduces double the error on each number. 
