@@ -74,7 +74,7 @@ IEEE DP, $e = 4$ bytes (32 bits), $t = 23$ bits and $\sigma = 1$ bit
 
 ### Sect. 1.1 IEEE SP Standard
 
-![[Pasted image 20250209184115.png]]
+![ASD](Pasted_1.png)
 
 $$
 E = e + 127
@@ -100,7 +100,7 @@ $E = 255$
 $\bar{x} \neq 0.00\dots$
 ### Sect. 1.2 IEEE DP Standard
 
-![[Pasted image 20250209184359.png]]
+![ASD](Pasted_2.png)
 
 ### Sect. 1.3 Accuracy of floating point representation
 
