@@ -151,12 +151,17 @@ $$
 
 The floating point **rounded**:
 
-$$
-fl(x) = \begin{cases}
-\sigma\cdot(a_1.a_2\dots a_n)_{10}\cdot10^e, & \mbox{if} & a_{n+1} < 5 \\
-\sigma\cdot(a_1.a_2\dots a_n)_{10}\cdot10^e + (0.00\dots01)_{10}, & \mbox{if} & a_{n+1} \geq 5
+
+
+```math
+fl(x) =
+\begin{cases}
+\sigma \cdot (a_1.a_2\ldots a_n)_2 \cdot 2^e, & \text{if } a_{n+1} = 0 \\
+\sigma \cdot (a_1.a_2\ldots a_n)_2 \cdot 2^e + (0.00\ldots01)_2, & \text{if } a_{n+1} = 1
 \end{cases}
-$$
+```
+
+
 
 Now lets consider them in binary floating point representations:
 
@@ -168,12 +173,12 @@ $$
 
 The floating point **rounded**:
 
-$$
+```math
 fl(x) = \begin{cases}
 \sigma\cdot(a_1.a_2\dots a_n)_{2}\cdot2^e, & \mbox{if} & a_{n+1} = 0 \\
 \sigma\cdot(a_1.a_2\dots a_n)_{2}\cdot2^e + (0.00\dots01)_{2}, & \mbox{if} & a_{n+1} = 1
 \end{cases}
-$$
+```
 
 The error $x - fl(x) = 0$ when $x$ is stored exactly the same.
 
@@ -195,12 +200,12 @@ $$
 
 For bounds on relative error $\Large\epsilon$ :
 
-$$
+```math
 \large
 \begin{array}
 -\frac{1}{2^n} \leq \epsilon \leq \frac{1}{2n} & \mbox{if rounding is used}\\
 -\frac{1}{2^{n-1}} \leq \epsilon \leq 0 & \mbox{if chopping is used}
 \end{array}
-$$
+```
 
 Observe that **chopping** introduces double the error on each number. 
