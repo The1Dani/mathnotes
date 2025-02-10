@@ -209,3 +209,219 @@ For bounds on relative error $\Large\epsilon$ :
 ```
 
 Observe that **chopping** introduces double the error on each number. 
+
+### Sect. 2 Errors, Sources and Propagation
+
+### 2.1 Absolute and relative errors :
+
+Let $x_T$ denote the true value of some number, usually unknown in practice, if we did, we would not need to bother with approximating it. Thus, we will usually merely estimate or bound the error rather than compute it exactly, because the true value is unknown. Let $x_A$ denote an approximation of $x_T$. The **error** in $x_A$ is obviously
+
+True value of the number : $x_T$
+Approximation value of $x_T$ : $x_A$ 
+
+Absolute Error:
+
+$$
+err(x_A) = x_T - x_A
+$$
+
+Relative Error:
+
+$$
+rel(x_A) = \frac{err(x_A)}{x_T} = \frac{x_T - x_A}{x_T}
+$$
+
+**Example:**
+
+Consider the approximation of number $e$ by $\frac{19}{7}$:
+
+$$x_T = e, x_A = \frac{19}{7}$$
+
+```math
+\begin{array}
+\text{err}(x_A) = e - \frac{19}{7} \approx 0.003996 = 3.996\cdot10^{-3} \\
+rel(x_A) \approx \frac{0.003996}{e} \approx 0.00147 = 1.47\cdot10^{-3}
+\end{array}
+```
+
+
+The significance of an error is obviously related to the magnitude of the quantity being measured or computed. Relative error better describes the error as it can be seen in the example below. Also, relative error can also be expressed as a percentage, which is simply the relative error times 100.
+
+$$
+\text{Relative error percentage} = rel(x_A) \cdot 100
+$$
+
+**Example :**
+Suppose that the distance between two cities is $D_T = 100$ km and let this distance be approximated with $D_A = 99$ km
+
+```math
+\begin{array}
+\text{}D_T = 100 \text{ km} \\
+D_A = 99 \text{ km} \\ \\
+\text{}err(D_A) = D_T - D_A = 1 \text{ km} \\
+rel(D_A) = \frac{err(D_A)}{D_T} = \frac{1}{100} = 0.01 = 1\%
+\end{array}
+```
+
+Now we suppose that true distance is $d_T = 2$ km and estimate with $d_A = 1$ km 
+
+```math
+\begin{array}
+\text{}d_T = 2 \text{ km} \\
+d_A = 1 \text{ km} \\ \\
+\text{}err(d_A) = d_T - d_A = 1 \text{ km} \\
+rel(d_A) = \frac{err(d_A)}{d_T} = \frac{1}{2} = 0.5 = 50\%
+\end{array}
+```
+
+In either cases the error is $1$ km but we observe that the relative errors are $1\%$ and $50\%$ We can conclude that the errors should be studied relative to our problems *a.k.a* we should prefer the better way of reading the errors **the relative errors**.
+
+Another useful way to express the relationship between absolute and relative error is the following :
+
+$$
+x_A = x_T\cdot(1 + rel(x_A))
+$$
+
+$$
+x_A = x_T\cdot(1 - rel(x_A))
+$$
+
+### 2.3 Significant Digits
+
+**NOTE** To not confuse witch $x$ is witch i recommend remembering :
+
+$$
+x_T = x_{Theoretic}
+$$
+
+$$
+x_A = x_{Approximated}
+$$
+
+
+**Definition** We say that number $x_A$ has $m$ significant digits with respect to $x_T$ if
+
+$$
+\left| \frac{x_T - x_A}{x_T} \right| \leq 5\cdot10^{-m-1}
+$$
+
+OR
+
+$$
+\left| \frac{x_T - x_A}{x_T} \right| \leq 0.\underbrace{00\dots0}_m 5
+$$
+
+**Examples**
+
+s.d. = significant digits
+
+$x_A = 0.222$ has 3 s.d. with respect to $x_T = \frac{2}{9} = 0.222\dots$  
+$x_A = 19.348$ has 4 s.d. with respect to $x_T = 19.347$
+$x_A = \frac{22}{7}$ has 3 s.d. with respect to $x_T = \pi$
+
+$$
+\vdots
+$$
+
+### 2.3 Sources of Error
+
+The sources of error in the computation of the solution of a mathematical continuous model for some physical situation can be roughly characterized as follows :
+
+- Modeling errors
+- Measurement errors
+- Previous computation errors
+- Truncation
+- Rounding / Chopping
+- Blunders / Bugs
+
+Let's discuss them in more details.
+
+**Modeling Error**
+In short the error being introduced from the facts that the models doesn't take into consideration some aspects of the experiment/calculation.
+
+**Physical / Observational / Measurement Error**
+This is due to measurements being finite and not infinitely accurate.
+
+**Previous Computations Errors**
+This is self explanatory you had errors errors accumulate you have more errors.
+
+**Truncation / Discretization Error**
+This is due to replacement functions used in computations we can see this in examples
+
+$$
+e^x \approx 1+ x +\frac{1}{2}x^2
+$$
+
+And 
+
+$$
+\int^1_0f(x)dx \approx \frac{1}{N}\sum^N_{j=1}f\left( \frac{j}{N} \right)
+$$
+
+these replacement functions contain an approximation error.
+
+**Rounding / Chopping Error**
+This is mentioned in [[NA Lecture 2 - Errors in Numerical Analysis#Sect. 1.4 Chopping and rounding]]
+
+**2.4 Loss of Significance Errors**
+This can be considered a source of error a consequence of the finiteness of computer arithmetic. 
+
+**Some Examples**
+
+$$
+f(x) = x(\sqrt{x+1} - \sqrt{x})
+$$
+
+This example when computed directly on a computer the you will not like the results
+it simply does not have the enough memory for the computation of numbers that are that near of each other
+
+![](Pasted_3.png)
+
+The solution is to get rid of the difference of that near numbers by making some arrangements in this case multiplying with the conjugate is enough
+
+$$
+f(x) = x\frac{\sqrt{x+1} + \sqrt{x}}{\sqrt{x+1} + \sqrt{x}}\cdot\frac{\sqrt{x+1} - 
+\sqrt{x}}{1} = \frac{x}{\sqrt{x+1} + \sqrt{x}}
+$$
+
+Then we calculate the $f(100)$ correctly by $f(100) = 4.98756$
+
+Another Example will be
+
+$$
+g(x) = \frac{1-\cos x}{x^2}
+$$
+
+If we calculate directly
+
+![](Pasted_4.png)
+
+We resolve this problem by utilizing 
+
+```math
+\large
+\begin{array}
+\text{}\cos(x) = 1 - 2\sin^2(x/2) \\ \\
+f(x) = \frac{1-cosx}{x^2} = \frac{2sin^2(x/2)}{x^2} = \frac{1}{2}(\frac{sin(x/2)}{x/2})^2
+\end{array}
+```
+
+### 2.4 Noise in function evaluation
+
+Whenever a function $f(x)$ is evaluated there are arithmetic operations carried out which involve rounding or chopping errors. The means that what the computer eventually returns an answer that contains noise. This noise is generally "random" and small. But it can effect the accuracy of other calculations which depend on $f(x)$
+
+![](Pasted_5.png)
+
+And if we zoom to $[0.99998, 1.00002]$
+
+![](Pasted_6.png)
+
+We can see that the lower we get with the values we can observe more distortion
+
+### 2.6 Underflow Error
+Storing a nonzero number as a **zero** leads to so-called **underflow** **error**
+
+### 2.7 Overflow
+Attempts to use numbers that are too large for the floating-point format will lead to so-called **overflow errors**. 
+
+### 2.8 Propagation of Arithmetic Operations Errors
