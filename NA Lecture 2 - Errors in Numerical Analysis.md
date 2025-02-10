@@ -231,6 +231,7 @@ $$
 Consider the approximation of number $e$ by $\frac{19}{7}$:
 
 $$x_T = e, x_A = \frac{19}{7}$$
+
 $$
 \begin{array}
 \text{err}(x_A) = e - \frac{19}{7} \approx 0.003996 = 3.996\cdot10^{-3} \\
@@ -243,6 +244,7 @@ The significance of an error is obviously related to the magnitude of the quanti
 $$
 \text{Relative error percentage} = rel(x_A) \cdot 100
 $$
+
 **Example :**
 Suppose that the distance between two cities is $D_T = 100$ km and let this distance be approximated with $D_A = 99$ km
 
@@ -265,6 +267,7 @@ d_A = 1 \text{ km} \\ \\
 rel(d_A) = \frac{err(d_A)}{d_T} = \frac{1}{2} = 0.5 = 50\%
 \end{array}
 $$
+
 In either cases the error is $1$ km but we observe that the relative errors are $1\%$ and $50\%$ We can conclude that the errors should be studied relative to our problems *a.k.a* we should prefer the better way of reading the errors **the relative errors**.
 
 Another useful way to express the relationship between absolute and relative error is the following :
@@ -309,6 +312,7 @@ s.d. = significant digits
 $x_A = 0.222$ has 3 s.d. with respect to $x_T = \frac{2}{9} = 0.222\dots$  
 $x_A = 19.348$ has 4 s.d. with respect to $x_T = 19.347$
 $x_A = \frac{22}{7}$ has 3 s.d. with respect to $x_T = \pi$
+
 $$
 \vdots
 $$
@@ -341,11 +345,13 @@ This is due to replacement functions used in computations we can see this in exa
 $$
 e^x \approx 1+ x +\frac{1}{2}x^2
 $$
+
 And 
 
 $$
 \int^1_0f(x)dx \approx \frac{1}{N}\sum^N_{j=1}f\left( \frac{j}{N} \right)
 $$
+
 these replacement functions contain an approximation error.
 
 **Rounding / Chopping Error**
