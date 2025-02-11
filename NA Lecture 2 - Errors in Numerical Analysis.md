@@ -296,7 +296,11 @@ $$
 **Definition** We say that number $x_A$ has $m$ significant digits with respect to $x_T$ if
 
 $$
-\left| \frac{x_T - x_A}{x_T} \right| \leq 5\cdot10^{-m-1}
+\left| \frac{x_T - x_A}{x_T} \right| \leq 5\cdot10^{-m-1},
+$$
+
+$$
+|rel(x_A)| \leq 5\cdot10^{-m-1}
 $$
 
 OR
